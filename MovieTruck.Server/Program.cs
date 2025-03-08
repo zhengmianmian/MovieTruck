@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MovieTruck.Server.Data;
+using MovieTruck.Server.Services;
 using System.Security.Claims;
 
 namespace MovieTruck.Server
@@ -16,6 +17,8 @@ namespace MovieTruck.Server
                 throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            // Register MovieService with DI
+            builder.Services.AddScoped<MovieService>();
 
             builder.Services.AddAuthorization();
             builder.Services.AddIdentityApiEndpoints<ApplicationUser>()

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MovieTruck.Server.Models;
 
 namespace MovieTruck.Server.Data
 {
@@ -17,6 +18,6 @@ namespace MovieTruck.Server.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        
+        public DbSet<Movie> Movies { get; set; }
     }
 }
