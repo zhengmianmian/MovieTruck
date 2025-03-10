@@ -14,19 +14,28 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 export interface MovieCardProps {
   id: number;
   title: string;
-  description: string;
-  releaseDate: string;
-  runningTime: number;
-  director: string;
-  cast: string;
-  largeCoverUrl: string;
-  smallCoverUrl: string;
-  sideCoverUrl: string;
+  description?: string;
+  releaseDate?: string;
+  runningTime?: number;
+  director?: string;
+  cast?: string;
+  largeCoverUrl?: string;
+  smallCoverUrl?: string;
+  sideCoverUrl?: string;
+  onPlayClick?: () => void;
+  onInfoClick?: () => void;
+  onTimesTicketClick?: () => void;
 }
 
-const MovieCard: FC<MovieCardProps> = ({ title, sideCoverUrl }) => {
+const MovieCard: FC<MovieCardProps> = ({
+  title,
+  sideCoverUrl,
+  onPlayClick,
+  onInfoClick,
+  onTimesTicketClick,
+}) => {
   return (
-    <Card sx={{ width: 230, height: 425 }}>
+    <Card sx={{ width: 230, height: 425, flexShrink: 0 }}>
       <CardMedia
         component="img"
         height="255"
@@ -52,6 +61,7 @@ const MovieCard: FC<MovieCardProps> = ({ title, sideCoverUrl }) => {
               backgroundColor: "rgba(255, 255, 255, 0.7)",
               "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.7)" },
             }}
+            onClick={() => onPlayClick?.()}
           >
             <PlayArrowIcon />
           </IconButton>
@@ -64,6 +74,7 @@ const MovieCard: FC<MovieCardProps> = ({ title, sideCoverUrl }) => {
               backgroundColor: "rgba(255, 255, 255, 0.7)",
               "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.7)" },
             }}
+            onClick={() => onInfoClick?.()}
           >
             i
           </IconButton>
@@ -88,6 +99,7 @@ const MovieCard: FC<MovieCardProps> = ({ title, sideCoverUrl }) => {
             backgroundColor: "black",
             color: "white",
           }}
+          onClick={() => onTimesTicketClick?.()}
         >
           Times & Tickets
         </Button>
