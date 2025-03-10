@@ -1,12 +1,12 @@
 // Replace your-renderer with the renderer you are using (e.g., react, vue3, etc.)
 import type { Meta, StoryObj } from "@storybook/react";
-import MovieCard from "./MovieCard";
-const meta: Meta<typeof MovieCard> = {
-  component: MovieCard,
+import MovieCardUI from "./MovieCardUI";
+const meta: Meta<typeof MovieCardUI> = {
+  component: MovieCardUI,
 };
 export default meta;
 
-type Story = StoryObj<typeof MovieCard>;
+type Story = StoryObj<typeof MovieCardUI>;
 
 export const Primary: Story = {
   args: {

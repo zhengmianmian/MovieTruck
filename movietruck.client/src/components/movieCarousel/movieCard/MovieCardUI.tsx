@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
-export interface MovieCardProps {
+export interface MovieCardUIProps {
   id: number;
   title: string;
   description?: string;
@@ -27,7 +27,7 @@ export interface MovieCardProps {
   onTimesTicketClick?: () => void;
 }
 
-const MovieCard: FC<MovieCardProps> = ({
+const MovieCardUI: FC<MovieCardUIProps> = ({
   title,
   sideCoverUrl,
   onPlayClick,
@@ -108,4 +108,4 @@ const MovieCard: FC<MovieCardProps> = ({
   );
 };
 
-export default MovieCard;
+export default MovieCardUI;

@@ -1,12 +1,12 @@
 // Replace your-renderer with the renderer you are using (e.g., react, vue3, etc.)
 import type { Meta, StoryObj } from "@storybook/react";
-import MovieCarousel from "./MovieCarousel";
-const meta: Meta<typeof MovieCarousel> = {
-  component: MovieCarousel,
+import MovieCarouselUI from "./MovieCarouselUI";
+const meta: Meta<typeof MovieCarouselUI> = {
+  component: MovieCarouselUI,
 };
 export default meta;
 
-type Story = StoryObj<typeof MovieCarousel>;
+type Story = StoryObj<typeof MovieCarouselUI>;
 
 export const Primary: Story = {
   args: {
