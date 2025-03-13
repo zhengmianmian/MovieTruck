@@ -19,5 +19,10 @@ namespace MovieTruck.Server.Services
                 .ToListAsync();
         }
 
+        public async Task<Movie?> GetMovieByIdAsync(int id)
+        {
+            return await _applicationDbContext.Movies.FindAsync(id);
+        }
+
     }
 }

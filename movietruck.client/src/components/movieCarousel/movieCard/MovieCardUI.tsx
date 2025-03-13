@@ -35,7 +35,7 @@ const MovieCardUI: FC<MovieCardUIProps> = ({
   onTimesTicketClick,
 }) => {
   return (
-    <Card sx={{ width: 230, height: 425, flexShrink: 0 }}>
+    <Card sx={{ width: 250, height: 425, flexShrink: 0 }}>
       <CardMedia
         component="img"
         height="255"

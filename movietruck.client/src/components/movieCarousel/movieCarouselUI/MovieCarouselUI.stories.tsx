@@ -1,8 +1,17 @@
 // Replace your-renderer with the renderer you are using (e.g., react, vue3, etc.)
 import type { Meta, StoryObj } from "@storybook/react";
 import MovieCarouselUI from "./MovieCarouselUI";
+import { MemoryRouter } from "react-router-dom";
+
 const meta: Meta<typeof MovieCarouselUI> = {
   component: MovieCarouselUI,
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 };
 export default meta;
 

@@ -4,6 +4,7 @@ import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import Header from "./components/header/Header.tsx";
 import Footer from "./components/footer/Footer.tsx";
+import MovieDetails from "./pages/MovieDetails.tsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
+        <Route path="/movie-details/:id" element={<MovieDetails />} />
       </Routes>
       <Footer />
     </BrowserRouter>

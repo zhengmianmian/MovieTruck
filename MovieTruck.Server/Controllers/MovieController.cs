@@ -19,5 +19,16 @@ namespace MovieTruck.Server.Controllers
             var movies = await _movieService.GetTopMoviesAsync(count);
             return Ok(movies);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMovieById(int id)
+        {
+            var movie = await _movieService.GetMovieByIdAsync(id);
+            if (movie == null)
+            {
+                return NotFound($"Movie with ID {id} not found.");
+            }
+            return Ok(movie);
+        }
     }
 }

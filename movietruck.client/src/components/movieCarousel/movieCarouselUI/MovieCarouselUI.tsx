@@ -3,12 +3,15 @@ import MovieCard, { MovieCardUIProps } from "../movieCard/MovieCardUI";
 import { Box, IconButton, Stack } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useNavigate } from "react-router-dom";
 
 export interface MovieCarouselUIProps {
   movieList: MovieCardUIProps[];
 }
 
 const MovieCarouselUI: FC<MovieCarouselUIProps> = ({ movieList }) => {
+  const navigate = useNavigate();
+
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const scrollAmount = 500; // Adjust scroll distance as needed
 
@@ -58,7 +61,13 @@ const MovieCarouselUI: FC<MovieCarouselUIProps> = ({ movieList }) => {
       >
         {movieList.length > 0 &&
           movieList.map((movieItem) => (
-            <MovieCard key={movieItem.id} {...movieItem} />
+            <MovieCard
+              key={movieItem.id}
+              {...movieItem}
+              onTimesTicketClick={() =>
+                navigate(`/movie-details/${movieItem.id}`)
+              }
+            />
           ))}
       </Stack>
       <IconButton

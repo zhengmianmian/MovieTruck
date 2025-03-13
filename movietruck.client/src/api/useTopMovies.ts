@@ -20,3 +20,19 @@ export const useTopMovies = () => {
     queryFn: fetchTopMovies,
   });
 };
+
+const fetchMovieById = async (id: string): Promise<Movie> => {
+  const response = await fetch(`/api/movie/${id}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch movie by id");
+  }
+  return response.json();
+};
+
+export const useMovieById = (id: string) => {
+  return useQuery<Movie>({
+    queryKey: ["movieById", id], // Include id in the queryKey to prevent cache conflicts
+    queryFn: () => fetchMovieById(id), // Pass id to the function
+    enabled: !!id, // Only run the query if id is truthy (prevents issues with undefined)
+  });
+};
