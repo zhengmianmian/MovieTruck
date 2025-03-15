@@ -8,6 +8,5 @@ namespace MovieTruck.Server.Models
     public int RoomId { get; set; }
     public Room Room { get; set; } = null!;
     public DateTime ShowTime { get; set; }
-    public List<SeatTime> SeatTimes { get; set; } = new();
   }
 }
