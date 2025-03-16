@@ -30,5 +30,19 @@ namespace MovieTruck.Server.Controllers
             }
             return Ok(movie);
         }
+
+        [HttpGet("showDates")]
+        public async Task<IActionResult> GetShowTimes([FromQuery] int movieId, [FromQuery] string location)
+        {
+            var showTimeDates = await _movieService.GetShowTimeDatesAsync(movieId, location);
+
+            if (!showTimeDates.Any())
+            {
+                return NotFound($"No showtimes found for movie ID {movieId} at location '{location}'.");
+            }
+
+            return Ok(showTimeDates);
+        }
+
     }
 }

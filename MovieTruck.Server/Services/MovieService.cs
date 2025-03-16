@@ -24,5 +24,16 @@ namespace MovieTruck.Server.Services
             return await _applicationDbContext.Movies.FindAsync(id);
         }
 
+        public async Task<List<DateOnly>> GetShowTimeDatesAsync(int movieId, string location)
+        {
+            return await _applicationDbContext.Times
+                .Where(t => t.MovieId == movieId && t.Room.CinemaLocation == location)
+                .Select(t => DateOnly.FromDateTime(t.ShowTime)) // Extract only date
+                .Distinct()
+                .OrderBy(date => date)
+                .ToListAsync();
+        }
+
+
     }
 }
