@@ -6,8 +6,8 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export interface DatePickerUIProps {
-  dates: string[];
-  onSelectDate: () => void;
+  dates?: string[];
+  onSelectDate?: () => void;
 }
 
 const DatePickerUI: FC<DatePickerUIProps> = ({ dates, onSelectDate }) => {
@@ -29,17 +29,17 @@ const DatePickerUI: FC<DatePickerUIProps> = ({ dates, onSelectDate }) => {
         gap={4}
         sx={{
           display: "flex",
-          justifyContent: "center",
           alignItems: "center",
           overflowX: "scroll",
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {dates.length > 0 &&
+        {dates &&
+          dates.length > 0 &&
           dates.map((date) => (
             <Typography
               key={date}
-              onClick={() => onSelectDate()}
+              onClick={() => onSelectDate?.()}
               variant="body1"
               sx={{ cursor: "pointer", flexShrink: 0 }}
             >
