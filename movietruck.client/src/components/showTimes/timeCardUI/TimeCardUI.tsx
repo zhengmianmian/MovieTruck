@@ -15,14 +15,21 @@ const TimeCardUI: FC<TimeCardUIProps> = ({ time, seatsAvailable }) => {
     >
       <Box
         sx={{
-          width: 350,
+          width: { xs: "80%", sm: 350 },
           borderLeft: "20px solid #d61023",
           bgcolor: "#f3f3f3",
           p: 2,
           overflow: "visible",
+          flexShrink: 0,
         }}
       >
-        <Typography variant="h5">{time}</Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "1rem", sm: "1.25rem" },
+          }}
+        >
+          {time}
+        </Typography>
       </Box>
     </Tooltip>
   );
