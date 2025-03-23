@@ -18,10 +18,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthorizedUser, useAuth } from "../AuthorizeView";
+import LogoutLink from "../LogoutLink";
 
 const Header: FC = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const { authorized } = useAuth();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -94,9 +98,17 @@ const Header: FC = () => {
                 MovieTruck
               </Link>
             </Typography>
-            <Button color="inherit" onClick={() => navigate("/login")}>
-              Login
-            </Button>
+
+            {authorized ? (
+              <>
+                <AuthorizedUser value="email" />
+                <LogoutLink>Log out</LogoutLink>
+              </>
+            ) : (
+              <Button color="inherit" onClick={() => navigate("/login")}>
+                Login
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
       </Box>

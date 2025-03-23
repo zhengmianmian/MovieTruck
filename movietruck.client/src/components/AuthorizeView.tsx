@@ -1,14 +1,17 @@
 import { Box } from "@mui/material";
-import React, { useState, useEffect, createContext } from "react";
-import { Navigate } from "react-router-dom";
-
-const UserContext = createContext({});
-
+import React, { useState, useEffect, createContext, useContext } from "react";
 interface User {
   email: string;
 }
+// Define the shape of the authentication context
+interface AuthContextType {
+  user: User;
+  authorized: boolean;
+}
 
-function AuthorizeView(props: { children: React.ReactNode }) {
+const UserContext = createContext<AuthContextType | null>(null);
+
+function AuthContextProvider(props: { children: React.ReactNode }) {
   const [authorized, setAuthorized] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true); // add a loading state
 
@@ -73,38 +76,25 @@ function AuthorizeView(props: { children: React.ReactNode }) {
       });
   }, []);
 
-  if (loading) {
-    return (
-      <>
-        <Box>Loading...</Box>
-      </>
-    );
-  } else {
-    if (authorized && !loading) {
-      return (
-        <>
-          <UserContext.Provider value={user}>
-            {props.children}
-          </UserContext.Provider>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <Navigate to="/login" />
-        </>
-      );
-    }
+  return loading ? (
+    <Box>Loading...</Box>
+  ) : (
+    <UserContext.Provider value={{ user, authorized }}>
+      {props.children}
+    </UserContext.Provider>
+  );
+}
+export function useAuth() {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthContextProvider");
   }
+  return context; // Exports { user, authorized }
 }
 
 export function AuthorizedUser(props: { value: string }) {
-  // Consume the username from the UserContext
-  const user: any = React.useContext(UserContext);
-
-  // Display the username in a h1 tag
-  if (props.value == "email") return <>{user.email}</>;
-  else return <></>;
+  const { user } = useAuth();
+  return props.value === "email" ? <>{user.email}</> : <></>;
 }
 
-export default AuthorizeView;
+export default AuthContextProvider;

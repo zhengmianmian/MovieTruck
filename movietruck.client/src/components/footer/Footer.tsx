@@ -27,7 +27,9 @@ const Footer: FC = () => {
       <Typography variant="h6">2025 - MTK Cinemas</Typography>
       <Stack direction="row" gap={2}>
         {links.map((link) => (
-          <Typography variant="body1">{link}</Typography>
+          <Typography key={link} variant="body1">
+            {link}
+          </Typography>
         ))}
       </Stack>
     </Stack>
